@@ -7,7 +7,7 @@ import { Models } from './models/modelRegistry.js';
 import { NPC } from './models/NPC.js';
 import { ActionMenu } from './ui/actionMenu.js';
 import { InteractionSystem } from './ui/interaction.js';
-import { OrientationGate } from './ui/orientationGate.js';
+// import { OrientationGate } from './ui/orientationGate.js';
 
 
 const viewport = document.getElementById('viewport');
