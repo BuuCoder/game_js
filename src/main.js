@@ -15,11 +15,11 @@ const world = document.getElementById('world');
 const playerEl = document.getElementById('player');
 const dpadEl = document.getElementById('dpad');
 
-const gate = new OrientationGate({
-  minAspect: 1.05,
-  tryLock: true,
-  overlayText: 'Xoay ngang hoặc nhấn “Thử toàn màn hình” (nếu được) để khoá landscape.'
-});
+// const gate = new OrientationGate({
+//   minAspect: 1.05,
+//   tryLock: true,
+//   overlayText: 'Xoay ngang hoặc nhấn “Thử toàn màn hình” (nếu được) để khoá landscape.'
+// });
 
 const Camera = {
   x: 0, y: 0,
