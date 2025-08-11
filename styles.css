@@ -1,0 +1,347 @@
+:root {
+  --world-w: 1800px;
+  --world-h: 800px;
+  --speed: 3.2;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at center, #202645, #0f1220);
+  color: #fff;
+  font-family: Arial, sans-serif;
+  user-select: none;
+  -webkit-user-select: none;
+  overflow: hidden;
+}
+
+/* Viewport = màn hình */
+.viewport {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* World (map) có kích thước cố định theo biến --world-* */
+.world {
+  position: absolute;
+  width: var(--world-w);
+  height: var(--world-h);
+  inset: 0 auto auto 0;
+  background: linear-gradient(135deg, #1b2042 0%, #12152b 100%);
+  border: 2px solid #555;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .5);
+  overflow: hidden;
+  will-change: transform;
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, .05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, .05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+/* Player sprite */
+.player {
+  --size: 72px;
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 5;
+  pointer-events: none;
+  image-rendering: pixelated;
+}
+
+/* HUD */
+.hud {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  background: rgba(0, 0, 0, .5);
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  border: 1px solid rgba(255, 255, 255, .1);
+  z-index: 10;
+  display: none;
+}
+
+.hud kbd {
+  background: #222;
+  border-radius: 4px;
+  padding: 2px 5px;
+  margin: 0 2px;
+  font-weight: bold;
+  border: 1px solid #444;
+}
+
+/* Joystick circular */
+.dpad-circle {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  display: grid;
+  place-items: center;
+  touch-action: none;
+  z-index: 20;
+  opacity: .9;
+}
+
+.dpad-circle .ring {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.085), rgba(0, 0, 0, .15));
+  border: 1px solid rgba(255, 255, 255, .12);
+  box-shadow: inset 0 0 0 8px rgba(255, 255, 255, .04);
+}
+
+.dpad-circle .thumb {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, #22222234 30%, #000 60%, #000 100%);
+  border: 2px solid #e4c02f38;
+  /* viền vàng như ảnh */
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, .45);
+  transition: transform .1s ease;
+}
+
+@media (hover:hover) and (pointer:fine) {
+  .dpad-circle {
+    opacity: .75;
+    left: 14px;
+    right: auto;
+    bottom: 14px;
+  }
+}
+
+
+/* D-PAD */
+/* .dpad{
+  position:absolute;
+  right:14px;
+  bottom:14px;
+  width:170px;
+  height:170px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  z-index:20;
+  opacity:.9;
+  touch-action:none;
+}
+.dpad .ring{
+  position:absolute;
+  inset:0;
+  background: radial-gradient(circle at center, rgba(0,0,0,.35), rgba(0,0,0,.15));
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:50%;
+  pointer-events:none;
+}
+.d-btn{
+  position:absolute;
+  width:48px;
+  height:48px;
+  border-radius:12px;
+  background: rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.2);
+  display:grid;
+  place-items:center;
+  font-size:16px;
+  color:#fff;
+  backdrop-filter: blur(2px);
+  -webkit-tap-highlight-color: transparent;
+  touch-action:none;
+  user-select:none;
+}
+.d-btn:active, .d-btn.active{
+  background: rgba(255,255,255,.18);
+  border-color: rgba(255,255,255,.35);
+}
+.d-up{ top:10px; left:61px; }
+.d-down{ bottom:10px; left:61px; }
+.d-left{ left:10px; top:61px; }
+.d-right{ right:10px; top:61px; }
+.d-ul{ top:22px; left:22px; }
+.d-ur{ top:22px; right:22px; }
+.d-dl{ bottom:22px; left:22px; }
+.d-dr{ bottom:22px; right:22px; }
+
+@media (hover:hover) and (pointer:fine){
+  .dpad { opacity:.75; }
+} */
+
+
+/* NPC */
+/* NPC sprite (giống player, chỉ khác z-index để đứng dưới/hoặc trên tuỳ bạn) */
+/* Contact badge nổi trên NPC (nằm trong .world nên tự đi cùng camera) */
+.npc {
+  position: absolute;
+  --size: 72px;
+  width: var(--size);
+  height: var(--size);
+  background-repeat: no-repeat;
+  background-size: contain;
+  image-rendering: pixelated;
+  z-index: 6;
+  /* cao hơn player để nút không bị che */
+  pointer-events: auto;
+  /* để click được nút contact */
+}
+
+.npc .contact-btn {
+  position: absolute;
+  left: 50%;
+  top: -16px;
+  transform: translateX(-50%);
+  padding: 2px 8px;
+  font-size: 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, .3);
+  background: rgba(0, 0, 0, .6);
+  color: #fff;
+  cursor: pointer;
+  display: none;
+  /* InteractionSystem sẽ bật khi ở gần */
+}
+
+.npc .npc-name {
+  position: absolute;
+  left: 50%;
+  top: -34px;
+  transform: translateX(-50%);
+  padding: 2px 6px;
+  font-size: 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, .2);
+  background: rgba(0, 0, 0, .45);
+  pointer-events: none;
+  /* không chặn click nút contact */
+  display: none;
+  /* hiện khi ở gần (do setContactVisible) */
+}
+
+/* Overlay */
+.action-overlay{
+  position:absolute; inset:0; z-index:30; display:none;
+  background: rgba(0,0,0,.45);
+}
+
+/* Modal trung tâm */
+.wish-modal{
+  position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+  width:min(92vw, 720px);
+  background:#fff; color:#222;
+  border:2px solid #d8c89a;
+  border-radius:14px;
+  box-shadow:0 18px 40px rgba(0,0,0,.55);
+  overflow:hidden;
+}
+
+/* Nút đóng */
+.wish-close{
+  position:absolute; right:8px; top:8px;
+  width:30px; height:30px; border-radius:50%;
+  border:1px solid rgba(0,0,0,.15);
+  background:#fff; cursor:pointer;
+}
+
+/* Message giống khung thoại */
+.wish-message{
+  padding:14px 16px;
+  font-size:16px; line-height:1.4;
+  background:#f9f6e9;
+  border-bottom:1px solid #eadfbf;
+}
+
+/* Hàng nút vàng to */
+.wish-actions{
+  display:grid; gap:10px; padding:12px; 
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.wish-btn{
+  padding:12px 10px;
+  border-radius:12px;
+  border:2px solid #a77700;
+  background: linear-gradient(#ffd24a, #f0b000);
+  box-shadow: 0 4px 0 #a77700, 0 10px 18px rgba(0,0,0,.18);
+  color:#3a2600; font-weight:800; cursor:pointer;
+  text-shadow: 0 1px 0 rgba(255,255,255,.6);
+}
+.wish-btn:hover{ filter: brightness(1.05); }
+.wish-btn:active{ transform: translateY(2px); box-shadow: 0 2px 0 #a77700, 0 6px 12px rgba(0,0,0,.18); }
+
+/* Khu hiển thị panel khi action có panelUrl/panelHtml */
+.wish-panel{
+  margin: 8px 12px 14px;
+  padding:12px; min-height:120px;
+  border:1px dashed #d8c89a; border-radius:10px;
+  background:#fffaf0;
+  font-size:14px; color:#222;
+}
+
+/* Mobile: cho phép cuộn dọc nếu panel cao */
+@media (max-width: 480px){
+  .wish-modal{ max-height: 90vh; overflow:auto; }
+}
+
+
+.rotate-overlay{
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(0,0,0,.85);
+  color: #fff; display: none;
+  align-items: center; justify-content: center; text-align: center;
+  padding: 24px;
+}
+.rotate-box{
+  max-width: 520px; width: 100%;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 16px; padding: 20px;
+  box-shadow: 0 12px 32px rgba(0,0,0,.5);
+}
+.rotate-title{ font-size: 22px; font-weight: 800; margin-top: 8px; }
+.rotate-sub{ opacity: .9; margin-top: 6px; }
+
+.rotate-try{
+  margin-top: 14px; padding: 10px 14px; font-weight: 700; cursor: pointer;
+  border-radius: 10px; border: 2px solid #a77700;
+  background: linear-gradient(#ffd24a,#f0b000); color:#3a2600;
+  box-shadow: 0 4px 0 #a77700, 0 10px 18px rgba(0,0,0,.18);
+}
+.rotate-try:active{ transform: translateY(2px); }
+
+.phone-icon{
+  width: 64px; height: 64px; margin: 0 auto;
+  background:
+    radial-gradient(circle at 50% 50%, #111 52%, transparent 53%) center/100% 100% no-repeat,
+    linear-gradient(#ccc,#999);
+  border-radius: 12px; position: relative;
+}
+.phone-icon::after{
+  content: ''; position: absolute; inset: -6px;
+  border: 2px dashed rgba(255,255,255,.4); border-radius: 18px;
+  transform: rotate(90deg);
+}

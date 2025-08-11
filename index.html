@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Responsive Map • Camera follows player (OOP, modular)</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="viewport" id="viewport">
+    <div class="world" id="world">
+      <div class="grid"></div>
+    </div>
+
+    <!-- Player sprite (positioned in screen coords) -->
+    <div class="player" id="player" aria-label="Player sprite" role="img"></div>
+
+    <div class="hud">
+      Điều khiển: <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> hoặc
+      <kbd>↑</kbd><kbd>←</kbd><kbd>↓</kbd><kbd>→</kbd>
+      • Giữ <kbd>Shift</kbd> để chạy nhanh • Giữ <kbd>Ctrl</kbd> để đi chậm
+    </div>
+
+    <!-- D-PAD dạng joystick -->
+    <div class="dpad dpad-circle" id="dpad" aria-label="Joystick">
+      <div class="ring"></div>
+      <div class="thumb" id="thumb"></div>
+    </div>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
