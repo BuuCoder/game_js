@@ -4,7 +4,7 @@ export const CONFIG = {
     height: parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--world-h')) || 800,
   },
   player: {
-    size: 72,
+    size: 80,
     baseSpeed: parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--speed')) || 3.2,
   }
 };

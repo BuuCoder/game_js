@@ -14,7 +14,7 @@ export class NPC extends Character {
         // Nút contact
         this.contactBtn = document.createElement('button');
         this.contactBtn.className = 'contact-btn';
-        this.contactBtn.textContent = 'contact';
+        this.contactBtn.textContent = 'Nói chuyện';
         el.appendChild(this.contactBtn);
 
         // tên NPC (ẩn/hiện khi lại gần)

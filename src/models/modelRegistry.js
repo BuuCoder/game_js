@@ -35,11 +35,11 @@ export function buildStaticModel({ name, img, size = 72 }) {
 
 // Ví dụ model mặc định tương thích với cấu trúc người dùng đang có
 export const Models = {
-  hero: buildModel({ name: 'hero', basePath: './assets/knight', size: 72 }),
-  knight: buildModel({ name: 'knight', basePath: './assets/knight', size: 72 }),
-  village:  buildStaticModel({ name: 'village',  img: './assets/npc/village/down_idle.gif',  size: 125 }),
-  business: buildStaticModel({ name: 'business', img: 'https://hoathinh3d.mx/wp-content/uploads/2025/07/chien-hoa-than-quan.webp', size: 148 }),
-  healer:   buildStaticModel({ name: 'healer',   img: 'https://hoathinh3d.mx/wp-content/uploads/2025/07/nghich-uong-tien-de.webp',   size: 124 }),
+  hero: buildModel({ name: 'hero', basePath: './assets/knight', size: 80 }),
+  knight: buildModel({ name: 'knight', basePath: './assets/knight', size: 80 }),
+  village:  buildStaticModel({ name: 'village',  img: './assets/npc/village/down_idle.gif',  size: 72 }),
+  business: buildStaticModel({ name: 'business', img: './assets/npc/business/down_idle.gif', size: 72 }),
+  healer:   buildStaticModel({ name: 'healer',   img: './assets/npc/healer/down_idle.gif',   size: 72 }),
 };
 
 /**

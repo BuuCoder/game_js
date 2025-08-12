@@ -76,7 +76,7 @@ const Game = {
 
     // Ví dụ: 3 NPC khác nhau
     this.npcs.push(makeNpc({
-      id: 'trader01', name: 'Merchant Linh',
+      id: 'trader01', name: 'Triệu Tử Long',
       x: start.x - 220, y: start.y - 60,
       model: Models.healer, facing: 'right',
       size: 'auto',
@@ -89,7 +89,7 @@ const Game = {
       ]
     }));
     this.npcs.push(makeNpc({
-      id: 'guild01', name: 'Guild Master',
+      id: 'guild01', name: 'Lý Mộ Uyển',
       x: start.x + 140, y: start.y + 100,
       model: Models.business, facing: 'left',
       size: 'auto',
@@ -101,10 +101,10 @@ const Game = {
       ]
     }));
     this.npcs.push(makeNpc({
-      id: 'healer01', name: 'Healer',
+      id: 'healer01', name: 'Ma Thần',
       x: start.x + 340, y: start.y - 140,
       model: Models.village, facing: 'down',
-      size: 125,
+      size: 72,
       actions: [
         {
           id: 'heal', label: 'Heal Me', panelHtml: '<b>Healing…</b>',
@@ -153,7 +153,7 @@ const Game = {
 
       // Turbo khi kéo sát rìa (mobile)
       if (this.isMobile() && joyMag >= 0.98) {
-        speed *= 1.8;
+        speed *= 1.2;
       }
     }
 
