@@ -18,17 +18,18 @@ export const npcList = [
     actions: [
       {
         id: 'trade',
-        label: 'Trade',
-        panelUrl: '/panels/trade.html',
-        api: {
-          url: '/api/trade/start',
-          method: 'POST',
-          body: { npcId: 'trader01' }
-        }
+        label: 'Nâng cấp',
+        panelHtml: '<b>Chọn vũ khí cần nâng cấp</b>',
+        // panelUrl: '/panels/trade.html',
+        // api: {
+        //   url: '/api/trade/start',
+        //   method: 'POST',
+        //   body: { npcId: 'trader01' }
+        // }
       },
       {
         id: 'repair',
-        label: 'Repair',
+        label: 'Sửa chửa',
         panelUrl: '/panels/repair.html'
       }
     ]
@@ -44,13 +45,14 @@ export const npcList = [
     actions: [
       {
         id: 'quest',
-        label: 'Get Quest',
-        panelUrl: '/panels/quest.html',
-        api: {
-          url: '/api/quest/assign',
-          method: 'POST',
-          body: { npcId: 'guild01' }
-        }
+        label: 'Nhận nhiệm vụ',
+        panelHtml: '<b>Luyện 3 viên vong trần đan</b>',
+        // panelUrl: '/panels/quest.html',
+        // api: {
+        //   url: '/api/quest/assign',
+        //   method: 'POST',
+        //   body: { npcId: 'guild01' }
+        // }
       }
     ]
   },
@@ -65,13 +67,8 @@ export const npcList = [
     actions: [
       {
         id: 'heal',
-        label: 'Heal Me',
-        panelHtml: '<b>Healing…</b>',
-        api: {
-          url: '/api/heal',
-          method: 'POST',
-          body: { npcId: 'healer01' }
-        }
+        label: 'Bạn thấy tôi như thế nào',
+        panelHtml: '<b>Thật là Soái Ca…</b>',
       }
     ]
   }
