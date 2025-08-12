@@ -8,6 +8,7 @@ import { NPC } from './models/NPC.js';
 import { ActionMenu } from './ui/actionMenu.js';
 import { InteractionSystem } from './ui/interaction.js';
 import { npcList } from './npcConfig.js';
+import { MODEL_ASSET_IMAGES } from './modelAssetImages.js';
 
 const viewport = document.getElementById('viewport');
 const world    = document.getElementById('world');
@@ -217,18 +218,9 @@ const Game = {
   }
 };
 
-// Hàm preload tất cả ảnh của các model
-function preloadImages(models) {
-  const urls = new Set();
-  // Duyệt qua tất cả model, lấy các url ảnh
-  Object.values(models).forEach(model => {
-    if (model.images && Array.isArray(model.images)) {
-      model.images.forEach(url => urls.add(url));
-    }
-  });
-  // Trả về Promise chờ load xong tất cả ảnh
+function preloadImagesFromList(urls) {
   return Promise.all(
-    Array.from(urls).map(
+    urls.map(
       url =>
         new Promise(resolve => {
           const img = new Image();
@@ -239,7 +231,13 @@ function preloadImages(models) {
   );
 }
 
-// Thay vì gọi Game.init trực tiếp, preload trước rồi mới init
-preloadImages(Models).then(() => {
-  Game.init({ model: Models.knight });
-});
+// --- Preload theo model cấu hình trong MODEL_ASSET_IMAGES ---
+const modelToUse = Models.knight; // hoặc đổi thành biến nếu muốn linh động
+const images = MODEL_ASSET_IMAGES[modelToUse.name];
+if (images && images.length) {
+  preloadImagesFromList(images).then(() => {
+    Game.init({ model: modelToUse });
+  });
+} else {
+  Game.init({ model: modelToUse });
+}
