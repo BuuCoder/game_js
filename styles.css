@@ -7,6 +7,9 @@
 html,
 body {
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 body {
@@ -23,6 +26,7 @@ body {
 .viewport {
   position: relative;
   width: 100vw;
+  max-width: 500px;
   height: 100vh;
   overflow: hidden;
 }
@@ -31,7 +35,8 @@ body {
 .world {
   position: absolute;
   width: var(--world-w);
-  height: var(--world-h);
+  min-height: var(--world-h);
+  height: 100%;
   inset: 0 auto auto 0;
   background: linear-gradient(135deg, #1b2042 0%, #12152b 100%);
   border: 2px solid #555;
@@ -133,6 +138,19 @@ body {
     left: 14px;
     right: auto;
     bottom: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dpad-circle {
+    width: 120px;
+    height: 120px;
+    left: 20px;
+    bottom: 80px;
+  }
+  .dpad-circle .thumb {
+    width: 36px;
+    height: 36px;
   }
 }
 
